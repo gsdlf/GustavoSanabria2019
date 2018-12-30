@@ -17,8 +17,7 @@ html,body{
     height:5vh;
     top:0;
     left:0;
-    font-family:'Bebas Neue Book';
-    font-size:3vh;
+    font-family:'Bebas Neue Book';    
     font-weight:normal;
     letter-spacing: 0.2em;
     display:flex;
@@ -29,17 +28,52 @@ html,body{
     padding-left:1.2vw;
     padding-right:0.9vw;
     box-sizing: border-box;
+    background-color: #FFF;
+}
+
+.textopq{
+    font-size:3vh;
+}
+
+#x_cerrar{
+    z-index:999;
+    opacity:0;
+    display:none;
+    -webkit-transition: opacity 0.5s; /* Safari */
+    transition: opacity 0.5s;
+    cursor:pointer;
+}
+
+.xcerrar{
+    color:#000;
+    font-family:'Bebas Neue';
+    font-weight:100;
+    font-size:7vw;
+    position:fixed;
+    top:2.5vh;
+    right:2vh;
+    transform: rotate(45deg);    
+}
+
+.xcerrar.brillo{
+    color:#FFF;
+    top:2.4vh;
+    right:1.9vh;
+    opacity:0.3;
 }
 
 #pagina{
     width:100vw;
     height:95vh;
     left:0;
-    bottom:0;
+    top:5vh;
     position:absolute;
     display:flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    -webkit-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s; /* Safari */
+    transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    transition-timing-function: ease-in-out;
 }
 
 .thumb{
@@ -73,6 +107,10 @@ html,body{
     opacity:0.17;
 }
 
+.sombra45{
+    opacity:0.17;
+}
+
 .gradiente_blanco{
     width:100%;
     height:40%;
@@ -83,6 +121,9 @@ html,body{
     background: -prefix-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1));
     background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
     opacity:0.3;
+    -webkit-transition: opacity 0.2s; /* Safari */
+    transition: opacity 0.2s;
+    transition-timing-function: ease-in-out;
 }
 
 .FOTOGRAFÍA{
@@ -94,6 +135,9 @@ html,body{
         font-size:3vw;
         padding-left:4vw;
         padding-right:2.7vw;
+    }
+    .textopq{
+        font-size:3vw;
     }
     .titulo{
         font-size:9vw;

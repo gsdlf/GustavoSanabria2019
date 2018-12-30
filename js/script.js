@@ -3,9 +3,13 @@ var nombresThumbs = new Array('FOTOGRAFÍA','DISEÑO GRÁFICO','BANNERS','PROGRA
 var anchoPantalla,
 	altoPantalla;
 var anchoMovil=false;
+var cuadricula;
 
 function empezar(){
+	cuadricula=Math.sqrt(nThumbs);
 	crearThumbs();
+	$('#x_cerrar').css('opacity','0');
+	$('#x_cerrar').css('display','block');
 };
 
 function resize() {
@@ -22,67 +26,88 @@ function resize() {
 		$('.thumb').css('width','100vw');
 		$('.thumb').css('height','56vw');
 	}else{
-		var cuadricula=Math.sqrt(nThumbs);
 		$('.thumb').css('width',100/cuadricula+'%');
 		$('.thumb').css('height',100/cuadricula+'%');
 	}
-
-    /*if (window.innerWidth / window.innerHeight >= ratio) {
-        var w = window.innerHeight * ratio;
-        var h = window.innerHeight;
-    } else {
-        var w = window.innerWidth;
-        var h = window.innerWidth / ratio;
-    }
-    renderer.view.style.width = w + 'px';
-    renderer.view.style.height = h + 'px';
-
-    escalaLienzo=h/size[1];
-
-    var capaEmail=document.getElementById("pedirEmail");
-    capaEmail.style.width=w+"px";
-
-    document.getElementById("bocadillo").style.fontSize = (30 * escalaLienzo)+'px';
-    document.getElementById("bocadillo").style.lineHeight = (26 * escalaLienzo)+'px';
-    document.getElementById("textoPeque").style.fontSize = (19 * escalaLienzo)+'px';
-    document.getElementById("enviarEmail").style.fontSize = (36 * escalaLienzo)+'px';
-    document.getElementById("q1").style.fontSize = (19 * escalaLienzo)+'px';
-    document.getElementById("aviso").style.fontSize = (19 * escalaLienzo)+'px';
-
-    anchoStage=stage.width;
-    setTimeout(function(){
-    	anchoStage=stage.width;
-    	//capaEmail.style.width=stage.width+"px";
-    }, 500);*/
 }
 window.onresize = resize;
 
 function crearThumbs(){
 	for (var i=0; i<nThumbs; i++){
-		$("#pagina").append('<div id="thumb_'+i+'" class="thumb '+nombresThumbs[i]+'"><div class="gradiente_blanco"></div><div id="titulo_'+i+'" class="titulo sombra">'+nombresThumbs[i]+'</div></div>');
+		//$("#pagina").append('<div id="thumb_'+i+'" class="thumb '+nombresThumbs[i]+'" onclick="clickThumb('+i+')" onmouseover="thumbMouseover('+i+');" onmouseout="thumbMouseout('+i+');"><div class="gradiente_blanco"></div><div id="titulo_'+i+'" class="titulo sombra">'+nombresThumbs[i]+'</div></div>');
+		$("#pagina").append('<div id="thumb_'+i+'" class="thumb '+nombresThumbs[i]+'" onclick="clickThumb('+i+')"><div class="gradiente_blanco"></div><div id="titulo_'+i+'" class="titulo sombra">'+nombresThumbs[i]+'</div></div>');
 	}
 	$( ".thumb" ).each(function( index ) {
 	  //console.log( index + ": " + $( this ).text() );
-	  var texto=$( this ).text();
+	  var texto=$( '.titulo',this ).html();
 	  $(this).append('<div class="titulo brillo">'+texto+'</div>');
 	  $(this).append('<div class="titulo">'+texto+'</div>');
 	});
+	var textoX=$('.xcerrar').html();
+	$('#x_cerrar').append('<div class="xcerrar brillo">'+textoX+'</div>');
+	$('#x_cerrar').append('<div class="xcerrar">'+textoX+'</div>');
 	crearSombra();
 }
 
 function crearSombra(){
 	//sombra textos
 	var shadowstring = '';
+	var shadowstring2 = '';
 
-	for(var i=0; i<200; i++){
+	for(var i=0; i<10; i=i+0.1){
 	    shadowstring += -i +'px '+i+'px rgba(0,0,50,1), ';
+	    shadowstring2 += '0px '+i+'px rgba(0,0,50,1), ';
 	}
 	shadowstring = shadowstring.substr(0, shadowstring.length-2);
-
-	//document.getElementById("titulo_1").setAttribute("style", "text-shadow: " + shadowstring);
+	shadowstring2 = shadowstring2.substr(0, shadowstring2.length-2);
 
 	$('.sombra').attr('style', "text-shadow: " + shadowstring);
+	$('.sombra45').attr('style', "text-shadow: " + shadowstring2);
 
 	resize();
+}
+
+function clickThumb(n){
+	$('#pagina').css('width',(100*cuadricula)+'vw');
+	$('#pagina').css('height',($('#pagina').height()*3)+'px');
+
+	$('#contenedor').css('overflow','hidden');
+
+	var y=$('#thumb_'+n).offset().top-$('#cabecera').outerHeight();
+	var x=$('#thumb_'+n).offset().left;
+
+	var posicionY=Math.round($('#thumb_'+n).offset().top/$('#thumb_'+n).height());
+	var posicionX=Math.round($('#thumb_'+n).offset().left/$('#thumb_'+n).width());
+
+	$('#pagina').css('top',(($('#pagina').height()*posicionY-$('#cabecera').outerHeight())*-1)+'px');
+	$('#pagina').css('left',($('#pagina').width()*posicionX*-1)+'px');
+
+	$('#x_cerrar').css('display','block');
+	$('#x_cerrar').css('opacity','1');
+	//$('#x_cerrar').fadeIn(500);
+}
+
+/*function thumbMouseover(n){
+	$('#thumb_'+n+' .gradiente_blanco').css('opacity','0.7');
+}
+
+function thumbMouseout(n){
+	$('#thumb_'+n+' .gradiente_blanco').css('opacity','0.3');
+}*/
+
+function cerrar(){
+	$('#pagina').css('width','');
+	$('#pagina').css('height','');
+
+	$('#contenedor').css('overflow','auto');
+
+	$('#pagina').css('top','');
+	$('#pagina').css('left','');
+
+	$('#x_cerrar').css('opacity','0');
+
+	setTimeout(function(){
+		$('#x_cerrar').css('display','none');
+	},500);
 }
 
