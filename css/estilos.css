@@ -11,6 +11,10 @@ html,body{
     position:relative;
 }
 
+#tt{
+    margin-left:1.2vw;
+}
+
 #cabecera{
     position:fixed;
     width:100vw;
@@ -21,8 +25,8 @@ html,body{
     font-weight:normal;
     letter-spacing: 0.2em;
     display:flex;
-    justify-content:space-between;
-    /*justify-content:flex-start;*/
+    /*justify-content:space-between;*/
+    justify-content:flex-start;
     align-items:center;
     padding-top:0.5vh;
     padding-left:1.2vw;
@@ -95,7 +99,8 @@ html,body{
     letter-spacing: 0.2em;
     color:#000;
     position:absolute;
-    bottom:0.6vw;
+    /*bottom:0.6vw;*/
+    top: 0.8vw;
     left:1.2vw;
 }
 
@@ -119,31 +124,35 @@ html,body{
     height:40%;
     position:absolute;
     left:0;
-    bottom:0;
+    top:0;
     /*background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,1)));*/
-    background: -prefix-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1));
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    background: -prefix-linear-gradient(bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,1));
     opacity:0.3;
     -webkit-transition: opacity 0.5s; /* Safari */
     transition: opacity 0.5s;
-    transition-timing-function: ease-in-out;
 }
 
 .FOTOGRAFÍA{
     background-image:url('http://gustavosanabria.com/img/acequia/005.jpg');
 }
 
-/*.contenido{
+.contenido{
     position:absolute;
-    overflow:auto;
-    width:98vw;
-    height:87%;
+    overflow:hidden;
+    width:100%;
+    height:100%;
     left:0;
-    right:0;
-    margin:0 auto;
-    top:1vw;
-    background-color: rgba(255,255,255,0.5);
-}*/
+    top:0;
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    align-content: center;
+    flex-wrap: wrap;
+    -webkit-transition: opacity 0.2s; /* Safari */
+    transition: opacity 0.2s;
+    visibility: hidden;
+}
 
 #menu{
     margin-top:-4px;
@@ -165,11 +174,72 @@ html,body{
   margin-bottom: 10px;
 }
 
+.item{
+    position:relative;
+    width:17vw;
+    height:22vw;
+    background-color: rgba(255,255,255,0.7);
+    -webkit-transition: opacity 0.5s; /* Safari */
+    transition: opacity 0.5s;
+    opacity:0;
+    cursor:pointer;
+}
+
+.fotoitem{
+    position:absolute;
+    left:1vw;
+    top:1vw;
+    width:15vw;
+    height:15vw;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.descripcionitem{
+    position:absolute;
+    left:1vw;
+    top:16vw;
+    font-family:'Bebas Neue';    
+    font-weight:normal;
+    letter-spacing: 0.2em;
+}
+
+.titularitem{
+    font-family:'Bebas Neue';    
+    font-weight:normal;
+    margin:1vw 0 0 0;
+}
+
+.subtitularitem{
+    font-family:'Bebas Neue Book';    
+    font-weight:normal;
+    font-size:0.8em;
+    margin:0.3vw 0 0 0;
+}
+
+#item_0_0 .fotoitem{
+    background-image: url('http://gustavosanabria.com/img/india/006.jpg');
+}
+
+.masitem{
+    display:flex;
+    font-family:'Bebas Neue';    
+    font-weight:100;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20vw;
+}
+
 @media only screen and (max-width : 480px) {
     #cabecera{
         font-size:3vw;
         padding-left:4vw;
         padding-right:2.7vw;
+    }
+    #tt{
+        margin-left:3.5vw;
     }
     .textopq{
         font-size:3vw;
@@ -177,7 +247,9 @@ html,body{
     .titulo{
         font-size:9vw;
         left:4vw;
-        bottom:2vw;
+        /*bottom:2vw;*/
+        bottom: initial;
+        top: 2.5vh;
     }
     .titulo.brillo{
         left:4.1vw;
@@ -185,12 +257,28 @@ html,body{
     }
     .xcerrar{
         font-size:20vw;
-        top:4.5vh;
+        top:-2.7vh;
         right:2vh;
     }
     .xcerrar.brillo{
-        top:4.4vh;
+        top:-2.8vh;
         right:1.9vh;
+    }
+    .item{
+        width:46vw;
+        height:62vw;
+        margin-top:2vw;
+    }
+    .fotoitem{
+        width:44vw;
+        height:44vw;
+    }
+    .descripcionitem{
+        left:2vw;
+        top:46vw;
+    }
+    .masitem{
+        font-size:55vw;
     }
 }
 
