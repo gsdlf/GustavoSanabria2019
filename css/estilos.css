@@ -12,7 +12,7 @@ html,body{
 }
 
 #cabecera{
-    position:absolute;
+    position:fixed;
     width:100vw;
     height:5vh;
     top:0;
@@ -37,8 +37,8 @@ html,body{
 
 #x_cerrar{
     z-index:999;
-    opacity:0;
-    display:none;
+    /*opacity:0;
+    display:none;*/
     -webkit-transition: opacity 0.5s; /* Safari */
     transition: opacity 0.5s;
     cursor:pointer;
@@ -50,15 +50,15 @@ html,body{
     font-weight:100;
     font-size:7vw;
     position:fixed;
-    top:2.5vh;
-    right:2vh;
+    top:3.5vh;
+    right:3vh;
     transform: rotate(45deg);    
 }
 
 .xcerrar.brillo{
     color:#FFF;
-    top:2.4vh;
-    right:1.9vh;
+    top:3.4vh;
+    right:2.9vh;
     opacity:0.3;
 }
 
@@ -83,6 +83,9 @@ html,body{
     background-size:cover;
     background-repeat:no-repeat;
     background-position:center;
+    -webkit-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s; /* Safari */
+    transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    transition-timing-function: ease-in-out;
 }
 
 .titulo{
@@ -121,13 +124,45 @@ html,body{
     background: -prefix-linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1));
     background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
     opacity:0.3;
-    -webkit-transition: opacity 0.2s; /* Safari */
-    transition: opacity 0.2s;
+    -webkit-transition: opacity 0.5s; /* Safari */
+    transition: opacity 0.5s;
     transition-timing-function: ease-in-out;
 }
 
 .FOTOGRAFÍA{
     background-image:url('http://gustavosanabria.com/img/acequia/005.jpg');
+}
+
+/*.contenido{
+    position:absolute;
+    overflow:auto;
+    width:98vw;
+    height:87%;
+    left:0;
+    right:0;
+    margin:0 auto;
+    top:1vw;
+    background-color: rgba(255,255,255,0.5);
+}*/
+
+#menu{
+    margin-top:-4px;
+}
+
+.menu-button {
+  display: block;
+  width: 20px;
+}
+.menu-button:before,
+.menu-button:after {
+  background-color: black;
+  content: '';
+  display: block;
+  height: 2px;
+}
+.menu-button:before {
+  box-shadow: 0 6px 0 black;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width : 480px) {
@@ -147,6 +182,15 @@ html,body{
     .titulo.brillo{
         left:4.1vw;
         bottom:2.1vw;
+    }
+    .xcerrar{
+        font-size:20vw;
+        top:4.5vh;
+        right:2vh;
+    }
+    .xcerrar.brillo{
+        top:4.4vh;
+        right:1.9vh;
     }
 }
 
